@@ -165,7 +165,7 @@ class XCGLoggerTests: XCTestCase {
         log.setup(.debug, showThreadName: true, showLogLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: nil)
 
         let linesToLog = ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"]
-        let myConcurrentQueue = DispatchQueue(label: "com.cerebralgardens.xcglogger.testMultiThreaded.queue", attributes: DispatchQueueAttributes.concurrent)
+//        let myConcurrentQueue = DispatchQueue(label: "com.cerebralgardens.xcglogger.testMultiThreaded.queue", attributes: DispatchQueueAttributes.concurrent)
         DispatchQueue.concurrentPerform(iterations: linesToLog.count) { (index: Int) in
             // log.debug(linesToLog[index])
             // Workaround for llvm-crash
@@ -180,7 +180,7 @@ class XCGLoggerTests: XCTestCase {
         log.setup(.debug, showThreadName: true, showLogLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: nil)
 
         let linesToLog = ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"]
-        let myConcurrentQueue = DispatchQueue(label: "com.cerebralgardens.xcglogger.testMultiThreaded2.queue", attributes: DispatchQueueAttributes.concurrent)
+//        let myConcurrentQueue = DispatchQueue(label: "com.cerebralgardens.xcglogger.testMultiThreaded2.queue", attributes: DispatchQueueAttributes.concurrent)
         DispatchQueue.concurrentPerform(iterations: linesToLog.count) { (index: Int) in
             log.debug {
                 return "\(linesToLog[Int(index)])"
@@ -196,7 +196,7 @@ class XCGLoggerTests: XCTestCase {
         // Note: The thread name included in the log message should be "main" even though the log is processed in a background thread. This is because
         // it uses the thread name of the thread the log function is called in, not the thread used to do the output.
         systemLogDestination.logQueue = DispatchQueue.global(attributes: DispatchQueue.GlobalAttributes.qosBackground)
-        log.addLogDestination(systemLogDestination)
+        _ = log.addLogDestination(systemLogDestination)
 
         let linesToLog = ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"]
         for line in linesToLog {
