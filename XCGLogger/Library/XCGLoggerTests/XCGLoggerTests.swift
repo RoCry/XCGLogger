@@ -195,7 +195,7 @@ class XCGLoggerTests: XCTestCase {
         systemLogDestination.showThreadName = true
         // Note: The thread name included in the log message should be "main" even though the log is processed in a background thread. This is because
         // it uses the thread name of the thread the log function is called in, not the thread used to do the output.
-        systemLogDestination.logQueue = DispatchQueue.global(attributes: DispatchQueue.GlobalAttributes.qosBackground)
+        systemLogDestination.logQueue = DispatchQueue.global(qos: .background)
         _ = log.addLogDestination(systemLogDestination)
 
         let linesToLog = ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"]
