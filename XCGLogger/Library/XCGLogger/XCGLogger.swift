@@ -48,7 +48,7 @@ public protocol XCGLogDestinationProtocol: CustomDebugStringConvertible {
 
 // MARK: - XCGBaseLogDestination
 // - A base class log destination that doesn't actually output the log anywhere and is intented to be subclassed
-public class XCGBaseLogDestination: XCGLogDestinationProtocol, CustomDebugStringConvertible {
+open class XCGBaseLogDestination: XCGLogDestinationProtocol, CustomDebugStringConvertible {
     // MARK: - Properties
     public var owner: XCGLogger
     public var identifier: String
@@ -155,7 +155,7 @@ public class XCGBaseLogDestination: XCGLogDestinationProtocol, CustomDebugString
     }
     
     // MARK: - Methods that must be overriden in subclasses
-    public func output(_ logDetails: XCGLogDetails, text: String) {
+    open func output(_ logDetails: XCGLogDetails, text: String) {
         // Do something with the text in an overridden version of this method
         precondition(false, "Must override this")
     }
